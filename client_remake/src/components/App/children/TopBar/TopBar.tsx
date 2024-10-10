@@ -11,7 +11,7 @@ import {
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { PiMathOperationsBold } from "react-icons/pi";
 import { VscColorMode } from "react-icons/vsc";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const TopBar: React.FC = () => {
   const { isSuccess, data } = useQuery({
@@ -26,6 +26,7 @@ const TopBar: React.FC = () => {
 
   const queryClient = useQueryClient();
   const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <div className={styles.root}>
@@ -39,9 +40,8 @@ const TopBar: React.FC = () => {
               <IoMdExit
                 onClick={() => {
                   clearTokensFromLocalStorage();
-                  queryClient.invalidateQueries({
-                    queryKey: [QUERY_KEYS.USER_DATA],
-                  });
+                  queryClient.resetQueries();
+                  navigate("/login");
                 }}
                 className={styles.logout}
               />

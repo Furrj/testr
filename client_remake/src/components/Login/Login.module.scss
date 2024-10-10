@@ -4,38 +4,39 @@
 .root {
   @include full-size-percent;
 
-  .content {
-    @include full-size-percent;
+  overflow: auto;
 
-    @include flex-center;
+  .scroll {
+    min-width: 100%;
+    min-height: 100%;
 
-    .passwordBox {
-      @include flex-center;
+    @include flex-center-col;
 
-      position: relative;
-    }
+    padding: 20px;
 
-    .eye {
-      position: absolute;
-      top: 55%;
-      right: 2%;
-      cursor: pointer;
-      color: white;
-    }
+    form {
+      @include flex-center-col;
 
-    input {
-      text-align: center;
-      font-size: 1.5rem;
-      width: 15rem;
-      height: 2rem;
-      border-radius: 10px;
-      border: 1px solid white;
-      background: rgb(71, 71, 71);
-      overflow-x: auto;
-    }
+      //background: rgba($color: #fff, $alpha: 1.0);
+      border-radius: 15px;
 
-    button {
-      @include login-register-btn;
+      padding: 50px;
+
+      input {
+        text-align: center;
+        font-size: 1.5rem;
+        width: 15rem;
+        height: 2rem;
+        border-radius: 10px;
+        border: 1px solid white;
+        background: rgb(71, 71, 71);
+        overflow-x: auto;
+      }
+
+      button {
+        @include login-register-btn;
+        margin-top: 20px;
+      }
     }
   }
 }
