@@ -11,7 +11,7 @@ import {
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { PiMathOperationsBold } from "react-icons/pi";
 import { VscColorMode } from "react-icons/vsc";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const TopBar: React.FC = () => {
   const { isSuccess, data } = useQuery({
@@ -25,6 +25,7 @@ const TopBar: React.FC = () => {
   const [showingNavbar, setShowingNavbar] = useState<boolean>(false);
 
   const queryClient = useQueryClient();
+  const location = useLocation();
 
   return (
     <div className={styles.root}>
@@ -50,11 +51,15 @@ const TopBar: React.FC = () => {
               />
             </div>
           ) : (
-            <div className={styles.buttons}>
-              <Link to={"/login"} className={"link"}>
-                <button>Login</button>
-              </Link>
-            </div>
+            <>
+              {location.pathname !== "/login" && (
+                <div className={styles.buttons}>
+                  <Link to={"/login"} className={"link"}>
+                    <button>Login</button>
+                  </Link>
+                </div>
+              )}
+            </>
           )}
           <VscColorMode className={styles.theme} />
         </div>
